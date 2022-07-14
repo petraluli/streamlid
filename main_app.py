@@ -43,7 +43,7 @@ if page == 'Mapa':
 
     from_hour_afternoon = col1.slider('Vecer od', min_value=12, max_value=23, value=15)
     to_hour_afternoon = col1.slider('Vecer do', min_value=12, max_value=23, value=19)
-    col2.write('Pocatecni stanice odpoledne mezi 15 a 19').format(from_hour_afternoon,
+    col2.write('Pocatecni stanice odpoledne mezi 15 a 19'.format(from_hour_afternoon,
                                                             to_hour_afternoon))
 
     query_afternoon = """SELECT
