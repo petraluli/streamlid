@@ -11,7 +11,7 @@ import plotly.express as px
 
 engine = create_engine("mysql+pymysql://data-student:u9AB6hWGsNkNcRDm@data.engeto.com:3306/data_academy_04_2022")
 
-q
+
 
 # ###############
 # vizualizace
