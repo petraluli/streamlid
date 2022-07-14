@@ -28,7 +28,7 @@ if page == 'Mapa':
 
     from_hour_morning = col1.slider('Rano od', min_value=5, max_value=12)
     to_hour_morning = col1.slider('Rano do', min_value=5, max_value=12)
-    col1.write('Pocatecni stanice rano mezi {from} a {to}'.format(from=from_hour_morning,
+    col1.write('Pocatecni stanice rano mezi {} a {}'.format(from=from_hour_morning,
                                                                     to=to_hour_morning))
         query_morning = """SELECT
                     start_station_latitude as lat,
