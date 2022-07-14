@@ -11,14 +11,24 @@ import plotly.express as px
 
 engine = create_engine("mysql+pymysql://data-student:u9AB6hWGsNkNcRDm@data.engeto.com:3306/data_academy_04_2022")
 
-query = """SELECT
+query_morning = """SELECT
                 start_station_latitude as lat,
                 start_station_longitude as lon
             FROM edinburgh_bikes
+            WHERE hour(started_at) BETWEEN 6 AND 9
             LIMIT 20000
         """
 
-df_bikes = pd.read_sql(sql=query, con=engine)
+query_afternoon = """SELECT
+                start_station_latitude as lat,
+                start_station_longitude as lon
+            FROM edinburgh_bikes
+            WHERE hour(started_at) BETWEEN 15 AND 19
+            LIMIT 20000
+        """
+
+df_bikes_morning = pd.read_sql(sql=query_morning, con=engine)
+df_bikes_afternoon = pd.read_sql(sql=query_afternoon, con=engine)
 
 # ###############
 # vizualizace
@@ -30,8 +40,11 @@ st.title('Moje prvni appka')
 page = st.sidebar.radio('Select page', ['Mapa', 'Thomson'])
 
 if page == 'Mapa':
-    st.write('Mapa pouzivani sdilenych kol v Edinburgu')
-    st.map(df_bikes)
+    st.header('Mapa pouzivani sdilenych kol v Edinburgu')
+    st.write('Pocatecni stanice rano mezi 6 a 9')
+    st.map(df_bikes_morning)
+    st.write('Pocatecni stanice odpoledne mezi 15 a 19')
+    st.map(df_bikes_afternoon)
 
 if page == 'Thomson':
     st.write('Thomson sampling')
