@@ -33,15 +33,15 @@ df_bikes_afternoon = pd.read_sql(sql=query_afternoon, con=engine)
 # ###############
 # vizualizace
 # ###############
+st.set_page_config(layout="wide")
 st.title('Moje prvni appka')
-
-
 
 page = st.sidebar.radio('Select page', ['Mapa', 'Thomson'])
 
 if page == 'Mapa':
-    col1,col2 = st.columns(2)
     st.header('Mapa pouzivani sdilenych kol v Edinburgu')
+
+    col1,col2 = st.columns(2)
     col1.write('Pocatecni stanice rano mezi 6 a 9')
     col1.map(df_bikes_morning)
 
